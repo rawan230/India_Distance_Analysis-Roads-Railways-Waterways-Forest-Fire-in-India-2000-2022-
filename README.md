@@ -35,6 +35,16 @@ boundary than every other step risks edge-pixel misalignment with the NDVI grid)
 (a flat degree×111km conversion is wrong by >19% across India's latitude range),
 GPU/CPU Euclidean distance transform.
 
+**Limitation, disclosed rather than left implicit**: Euclidean ("as-the-crow-flies")
+distance is the accepted, mainstream choice for this variable in the current
+wildfire-ignition-risk literature (matching Biswas et al.'s own approach, and recent
+Q1 work such as the NHESS 2025 study on human-caused ignition likelihood across
+Europe) — it is not a flaw that requires fixing before submission. But it does not
+capture the distance–time/accessibility relationship a cost-distance or travel-time
+surface would (accounting for terrain difficulty, which affects how humans actually
+reach an area). Worth one sentence in the paper's limitations section rather than an
+unstated simplification.
+
 ## Results (India-masked, km)
 
 | Variable | Resolution | Min | Max | Mean | P95 |
