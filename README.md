@@ -20,9 +20,35 @@ variables** (its Table 3), not the 11 this project's docs had been claiming befo
 zero coverage of — the "human activity-related factors": **distance to roads** (5.7%
 variable importance / 2.6% model contribution in their MaxEnt run), **distance to
 railways** (4.6% / 4.9%), and **distance to waterways** (0.5% / 1.7%). Combined, these
-three account for **10.8%** of their model's total contribution. Their data source:
+three account for **10.8%** of their model's total contribution — notably **larger**
+than the topographic group's combined 9.7% despite being the group more likely to be
+assumed "minor," worth stating explicitly since it undercuts that assumption. Their
+data source:
 **OpenStreetMap, 2022 vintage** (Biswas et al. Table 2). The other 3 missing variables
-(elevation/slope/aspect) are the sibling repo's Step 5a.
+(elevation/slope/aspect) are the sibling repo's Step 5a. Together, Step 5a + 5b close
+all 6 of the pipeline's remaining gaps, bringing the full pipeline (Steps 1–4 plus this
+pair) to **15/15 predictor-group parity** with Biswas et al.'s Table 3 — wired into
+Step 6's integrated stack on 2026-08-20.
+
+## Why this step, and how (plain-language walkthrough)
+
+Distance to roads, railways, and waterways are standard proxies for **human-caused
+ignition likelihood**: most forest fires in India (and globally) are started by people —
+agricultural burning, discarded cigarettes/matches, campfires, deliberate clearing — so
+closer proximity to infrastructure that brings people into a forest is a reasonable proxy
+for ignition-source density, independent of the fuel/climate conditions the rest of this
+pipeline's other variables already capture. Waterways add a second, distinct mechanism on
+top of accessibility: riparian corridors support denser vegetation, which is both more
+fuel and (in dry-season India) more attractive to human activity such as fishing, grazing,
+and settlement, making proximity to water a double signal rather than pure accessibility.
+These three variables were the last human-activity gap in this pipeline — every other
+step (NDVI, LST, FLDAS climatic variables, land cover, and the sibling Step 5a terrain
+variables) was already built before this notebook was added 2026-08-18/19/20. The output
+here (three GeoTIFFs: distance to roads/railways/waterways × native-1km and
+0.25°-comparison) is consumed by Step 6, which stacks it alongside every other step's
+rasters into the single `Integrated_FireRisk_Stack.tif` / `Integrated_FireRisk_
+Pixels.parquet` that Step 7's Random Forest/MaxEnt models and Step 8's CDR-PINN both
+train on directly.
 
 ## Method
 
@@ -86,7 +112,24 @@ accumulating near water. Railways show almost no effect, matching Biswas et al.'
 model where distance-to-railway is their lowest-contribution human-activity factor
 after waterways.
 
-## Against Biswas et al. (2025)
+## Comparison against Biswas et al. (2025)
+
+This project computes distances with a **full GPU Euclidean distance transform** over
+Geofabrik OSM 2022 vector data, at the shared grid's native ~1km resolution (and
+projected through a custom India-centred equidistant conic projection to avoid the
+>19% latitude-dependent error a flat degree×111km conversion would introduce), before
+producing a 0.25° comparison raster purely for benchmarking against Biswas et al.'s own
+working resolution. Biswas et al.'s Table 2 states only "proximity...from OSM" and names
+no distance algorithm — Euclidean, network, and cost-distance are all consistent with
+that wording. Euclidean distance transform is the defensible, standard choice adopted
+here (matching the field's mainstream practice, see the limitation note above), but it
+is **not explicitly confirmed** as what Biswas et al. themselves used, and this project
+does not claim otherwise. Their own distances also appear to have been rasterized
+directly at 0.25° from an unspecified source resolution, whereas this project resolves
+the underlying OSM vector geometry at native resolution before any aggregation — a
+methodological improvement in precision, though not one directly comparable against
+Biswas et al.'s numbers since they never published raw distance statistics, only
+MaxEnt importance/contribution percentages.
 
 | Variable | Their importance | Their contribution | Status |
 |---|---:|---:|---|
