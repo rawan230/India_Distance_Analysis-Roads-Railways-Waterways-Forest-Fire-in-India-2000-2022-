@@ -20,10 +20,19 @@ variables** (its Table 3), not the 11 this project's docs had been claiming befo
 zero coverage of — the "human activity-related factors": **distance to roads** (5.7%
 variable importance / 2.6% model contribution in their MaxEnt run), **distance to
 railways** (4.6% / 4.9%), and **distance to waterways** (0.5% / 1.7%). Combined, these
-three account for **10.8%** of their model's total contribution — notably **larger**
-than the topographic group's combined 9.7% despite being the group more likely to be
-assumed "minor," worth stating explicitly since it undercuts that assumption. Their
-data source:
+three account for **10.8% of their model's total importance and 9.2% of its total
+contribution**. **Corrected 2026-09-23**: an earlier version of this sentence claimed
+the human-activity group's contribution (10.8%, actually the importance sum) was
+"notably larger" than the topographic group's — that comparison mixed an importance
+sum against a mislabeled figure from the sibling Step 5a README and does not hold up
+once both are computed correctly on the same basis: by combined *importance*,
+human-activity (10.8%) does modestly exceed topographic (9.7%); by combined
+*contribution*, topographic (22.5%, driven by slope's own 16.7%) is more than double
+human-activity's (9.2%). The genuinely interesting comparison is therefore the
+opposite of what was previously stated: despite having *lower* combined importance
+than the human-activity group, the topographic group's actual model contribution is
+substantially larger — consistent with Biswas et al.'s own MaxEnt ranking slope as
+their single second-highest contribution variable. Their data source:
 **OpenStreetMap, 2022 vintage** (Biswas et al. Table 2). The other 3 missing variables
 (elevation/slope/aspect) are the sibling repo's Step 5a. Together, Step 5a + 5b close
 all 6 of the pipeline's remaining gaps, bringing the full pipeline (Steps 1–4 plus this
