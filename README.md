@@ -7,6 +7,17 @@
 > Earlier text below is kept for the record (it also remains in the git history). Statements superseded by the audit:
 >
 > - None of the specific numbers in this file were superseded; see `AUDIT_2026-09-25.md` for the audited results of this step.
+>
+> **Pipeline rerun (2026-09-25).** The notebook was corrected and re-executed end-to-end, and the result tables below now come from that rerun:
+> - Fire points are rasterised to their *containing* pixel (`floor`, not `round`, which displaced 74.9% of points by one pixel).
+> - Outputs go to this repository's own `Accessibility_Outputs/`.
+> - Statistics use the final v2 NDVI-valid India mask (4,160,768 pixels, exactly the pixel set of Step 6's v2 table).
+>
+> The previous table used an earlier, wider mask (4,185,401 pixels); those values are in the git history.
+>
+> **Validation:**
+> - The distance rasters are identical (max difference 0) to the `dist_*` columns of Step 6's v2 table.
+> - On the audit's 4,161,009-pixel mask, the road mean is 5.6059 km, matching the independent audit recalculation (`audit_2026-09-25/results/R7_report.json`, r = 0.9999994).
 <!-- AUDIT-UPDATE-2026-09-25 -->
 
 
@@ -90,18 +101,18 @@ surface would (accounting for terrain difficulty, which affects how humans actua
 reach an area). Worth one sentence in the paper's limitations section rather than an
 unstated simplification.
 
-## Results (India-masked, km)
+## Results (India-masked, km; rerun 2026-09-25)
 
 | Variable | Resolution | Min | Max | Mean | P95 |
 |---|---|---:|---:|---:|---:|
-| Distance to roads | native ~1km | 0.00 | 260.1 | 5.69 | 15.90 |
-| Distance to roads | 0.25° comparison | 0.03 | 244.2 | 6.83 | — |
-| Distance to railways | native ~1km | 0.00 | 1,611.2 | 38.28 | 160.07 |
-| Distance to railways | 0.25° comparison | 0.34 | 1,604.5 | 52.43 | — |
-| Distance to waterways | native ~1km | 0.00 | 386.4 | 6.74 | 26.49 |
-| Distance to waterways | 0.25° comparison | 0.00 | 385.1 | 8.11 | — |
+| Distance to roads | native ~1km | 0.00 | 260.1 | 5.60 | 15.21 |
+| Distance to roads | 0.25° comparison | 0.03 | 243.7 | 6.65 | — |
+| Distance to railways | native ~1km | 0.00 | 1,610.0 | 37.44 | 157.50 |
+| Distance to railways | 0.25° comparison | 0.22 | 1,603.7 | 51.01 | — |
+| Distance to waterways | native ~1km | 0.00 | 385.6 | 6.68 | 25.86 |
+| Distance to waterways | 0.25° comparison | 0.00 | 384.9 | 7.90 | — |
 
-**The 1,611km railway maximum is real geography, not a bug** — traced directly: the
+**The 1,610km railway maximum is real geography, not a bug** — traced directly: the
 boundary shapefile's polygon part 0 spans 92.2–93.9°E, 6.75–13.67°N, the Andaman &
 Nicobar Islands, which genuinely have no rail connection to the mainland.
 
@@ -117,13 +128,15 @@ Nicobar Islands, which genuinely have no rail connection to the mainland.
   urban channels, not a meaningful fire-fuel or accessibility signal); kept 234,313 of
   255,094.
 
-## Fire coincidence (541,545 real Step 1 fire points)
+## Fire coincidence (Step 1 fire points; rerun 2026-09-25)
+
+541,017 of the 541,545 Step 1 points fall on a valid in-India pixel of the final mask.
 
 | Variable | National mean | Fire-point mean | Difference |
 |---|---:|---:|---:|
-| Distance to roads | 5.69 km | 3.41 km | **−40.1%** |
-| Distance to railways | 38.28 km | 40.12 km | +4.8% |
-| Distance to waterways | 6.74 km | 2.38 km | **−64.7%** |
+| Distance to roads | 5.60 km | 3.42 km | **−38.9%** |
+| Distance to railways | 37.44 km | 39.99 km | +6.8% |
+| Distance to waterways | 6.68 km | 2.38 km | **−64.4%** |
 
 Fires cluster far closer to roads and waterways than the national baseline — consistent
 with human-accessibility ignition sources near roads, and denser fuel (vegetation)

@@ -1,4 +1,4 @@
 variable,national_mean_km,fire_mean_km,fire_median_km,pct_diff,n_fire_points
-Distance to Roads,5.690247,3.4086938,2.5087078,-40.095856,541206
-Distance to Railways,38.278427,40.12443,31.409546,4.8225713,541206
-Distance to Waterways,6.7390723,2.3795505,1.7415115,-64.69024,541206
+Distance to Roads,5.60163,3.4213674,2.5153055,-38.921932,541017
+Distance to Railways,37.4419,39.9871,31.295645,6.7977333,541017
+Distance to Waterways,6.6818323,2.3779285,1.7335199,-64.412025,541017
