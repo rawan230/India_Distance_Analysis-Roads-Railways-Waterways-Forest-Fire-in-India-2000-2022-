@@ -1,0 +1,130 @@
+{
+ "provenance": {
+  "timestamp": "2026-09-24T16:51:49",
+  "script": "results\\code\\recalc_07_access.py",
+  "script_sha256": "44474a069d35c957f1ab305c8b41e03ec98168807a0a3ade3e249e60c0dd6085",
+  "repo_commits": {
+   "Forest fire Extraction in INDIA(2000-2022)": "a01fadb",
+   "NDVI_DATA_INDIA_": "1c274d6",
+   "LST_analysis": "7e5d870",
+   "FLDAS Noah Land Surface Model L4 Global Monthly 0.1 x 0.1 degree (MERRA-2 and CHIRPS) (FLDAS_NOAH01_C_GL_M)": "4dbe755",
+   "Terrain_Elevation_Slope_Aspect_Analysis": "e48a4a9",
+   "Distance_Roads_Railways_Waterways_Analysis": "c74ab6b",
+   "Integrated_Analysis": "3fcc34c",
+   "Physics_Informed_FireRisk_Model": "cd1d298"
+  },
+  "root_commit": "fb0d8aa"
+ },
+ "roads": {
+  "n_features_raw": 884940,
+  "n_features_clipped": 882498,
+  "historical_comparison": {
+   "name": "roads recalculated vs parquet",
+   "n_compared": 4161009,
+   "n_nan_new_only": 0,
+   "n_nan_old_only": 0,
+   "max_abs_diff": 5.635310649871826,
+   "mean_abs_diff": 0.00027986477955351023,
+   "rmse": 0.024522126827693995,
+   "pearson_r": 0.9999994029441073,
+   "new_mean": 5.605991126396996,
+   "old_mean": 5.605904455772381,
+   "frac_exact": 0.997980057240924,
+   "frac_within_1e4_rel": 0.9996337426811622
+  },
+  "validation": {
+   "n": 3000,
+   "mean_exact_km": 5.226634076214988,
+   "mean_raster_km": 5.081268787384033,
+   "bias_km": -0.14536485434787813,
+   "mae_km": 0.2485572044900739,
+   "rmse_km": 0.3091508496821165,
+   "p95_abs_err_km": 0.5774619821709879,
+   "rel_err_median_pct_where_exact_gt5km": -1.1702472650291138,
+   "bias_by_lat_band": {
+    "5-10": -0.16007109633158062,
+    "10-15": -0.15665026794320402,
+    "15-20": -0.15799415223094151,
+    "20-25": -0.18551826087304263,
+    "25-30": -0.1575875752863972,
+    "30-35": -0.11417248837627161,
+    "35-40": 0.461726015172895
+   }
+  }
+ },
+ "railways": {
+  "n_features_raw": 100915,
+  "n_features_clipped": 100620,
+  "historical_comparison": {
+   "name": "railways recalculated vs parquet",
+   "n_compared": 4161009,
+   "n_nan_new_only": 0,
+   "n_nan_old_only": 0,
+   "max_abs_diff": 1.78314208984375,
+   "mean_abs_diff": 3.6227535441158856e-05,
+   "rmse": 0.005867334420642747,
+   "pearson_r": 0.999999997338044,
+   "new_mean": 37.453748304700966,
+   "old_mean": 37.453732434767154,
+   "frac_exact": 0.9855652799597405,
+   "frac_within_1e4_rel": 0.9999149244810573
+  },
+  "validation": {
+   "n": 3000,
+   "mean_exact_km": 38.27466262989082,
+   "mean_raster_km": 38.058467864990234,
+   "bias_km": -0.2161926164161188,
+   "mae_km": 0.4491878367781031,
+   "rmse_km": 0.6460542983268708,
+   "p95_abs_err_km": 0.9622133210245326,
+   "rel_err_median_pct_where_exact_gt5km": -1.6030757155263324,
+   "bias_by_lat_band": {
+    "5-10": -0.1749083830569974,
+    "10-15": -0.31512452584263173,
+    "15-20": -0.37330762093603254,
+    "20-25": -0.3693814058067529,
+    "25-30": -0.31846958113401175,
+    "30-35": 0.5607927627612057,
+    "35-40": 1.223185172663793
+   }
+  }
+ },
+ "waterways": {
+  "n_features_raw": 234313,
+  "n_features_clipped": 231474,
+  "historical_comparison": {
+   "name": "waterways recalculated vs parquet",
+   "n_compared": 4161009,
+   "n_nan_new_only": 0,
+   "n_nan_old_only": 0,
+   "max_abs_diff": 8.561455011367798,
+   "mean_abs_diff": 0.0006191525702669063,
+   "rmse": 0.033745449438873386,
+   "pearson_r": 0.9999988030353278,
+   "new_mean": 6.685369806829608,
+   "old_mean": 6.685365650047249,
+   "frac_exact": 0.9970795545022854,
+   "frac_within_1e4_rel": 0.9988851261797319
+  },
+  "validation": {
+   "n": 3000,
+   "mean_exact_km": 6.196253410365852,
+   "mean_raster_km": 6.056895732879639,
+   "bias_km": -0.13935700800588388,
+   "mae_km": 0.24735497767944528,
+   "rmse_km": 0.3168777150550773,
+   "p95_abs_err_km": 0.5614840166909375,
+   "rel_err_median_pct_where_exact_gt5km": -1.3857165195073597,
+   "bias_by_lat_band": {
+    "5-10": -0.18338764415044187,
+    "10-15": -0.15729930032380482,
+    "15-20": -0.1375929607546718,
+    "20-25": -0.15757319575743015,
+    "25-30": -0.17549313891855614,
+    "30-35": -0.10284045111762002,
+    "35-40": 0.3967013498610336
+   }
+  }
+ },
+ "runtime_sec": 11725.650560855865
+}
